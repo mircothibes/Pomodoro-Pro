@@ -56,6 +56,18 @@ pomodoro-pro/
 ```
 ---
 
+## 📦 Installation
+Clone the repository and create a virtual environment:
+```
+git clone https://github.com/mircothibes/pomodoro-pro.git
+cd pomodoro-pro
+python -m venv .venv
+.\.venv\Scripts\activate   # Windows
+pip install -r requirements.txt
+```
+
+---
+
 ## 👨‍💻 Author
 
 Developed by Marcos Vinicius Thibes Kemer
