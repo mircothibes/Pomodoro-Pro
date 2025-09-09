@@ -40,8 +40,21 @@ This routine helps improve concentration, reduces mental fatigue, and boosts con
 ---
 
 ## 📂 Project Structure
+´´´
+pomodoro-pro/
+├─ src/
+│ ├─ app.py # entry point
+│ ├─ ui.py # Tkinter interface
+│ ├─ timer.py # timer logic
+│ ├─ storage.py # save/load sessions
+│ ├─ reports.py # reports and charts
+│ └─ assets/ # sounds, icons
+├─ data/ # CSV + config.json
+├─ README.md
+├─ requirements.txt
+└─ pyproject.toml
 
-
+´´´
 ---
 
 ## 👨‍💻 Author
