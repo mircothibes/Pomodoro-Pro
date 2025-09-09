@@ -77,6 +77,12 @@ Run the app:
 
 ---
 
+📜 License
+
+This project is open-source, licensed under the MIT License.
+
+---
+
 ## 👨‍💻 Author
 
 Developed by Marcos Vinicius Thibes Kemer
