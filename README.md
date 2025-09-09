@@ -40,7 +40,7 @@ This routine helps improve concentration, reduces mental fatigue, and boosts con
 ---
 
 ## 📂 Project Structure
-´´´
+```
 pomodoro-pro/
 ├─ src/
 │ ├─ app.py # entry point
@@ -53,8 +53,7 @@ pomodoro-pro/
 ├─ README.md
 ├─ requirements.txt
 └─ pyproject.toml
-
-´´´
+```
 ---
 
 ## 👨‍💻 Author
