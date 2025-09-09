@@ -40,3 +40,12 @@ This routine helps improve concentration, reduces mental fatigue, and boosts con
 ---
 
 ## 📂 Project Structure
+
+
+---
+
+## 👨‍💻 Author
+
+Developed by Marcos Vinicius Thibes Kemer
+
+---
