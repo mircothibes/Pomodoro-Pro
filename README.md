@@ -65,6 +65,15 @@ python -m venv .venv
 .\.venv\Scripts\activate   # Windows
 pip install -r requirements.txt
 ```
+---
+## ▶️ Usage
+
+Run the app:
+
+- Click Start to begin a cycle.
+- The timer automatically moves to the next phase.
+- Each completed session is saved to the log.
+- Access Reports in the menu to view your performance.
 
 ---
 
