@@ -1,14 +1,3 @@
-DEFAULT_CFG = {
-    "work_sec": 25*60,
-    "short_sec": 5*60,
-    "long_sec": 15*60,
-    "sessions_per_long": 4,
-    "sound": True,
-    "notify": True,
-    "theme": "light",
-}
-
-# storage.py 
 from pathlib import Path
 import csv, datetime as dt
 
@@ -23,3 +12,13 @@ def append_session(start_dt, end_dt, phase, duration, tag=""):
         if new:
             w.writerow(["start", "end", "phase", "duration_sec", "tag"])
         w.writerow([start_dt.isoformat(), end_dt.isoformat(), phase, duration, tag])
+
+DEFAULT_CFG = {
+    "work_sec": 25*60,
+    "short_sec": 5*60,
+    "long_sec": 15*60,
+    "sessions_per_long": 4,
+    "sound": True,
+    "notify": True,
+    "theme": "light",
+}
