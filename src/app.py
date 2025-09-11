@@ -1,8 +1,10 @@
 import tkinter as tk
 import datetime as dt
+from pathlib import Path
 
 from storage import load_config, append_session
 from timer import PomodoroTimer
+from notify import play_sound, show_notification  # <-- NOVO
 
 
 def fmt_time(seconds: int) -> str:
@@ -10,11 +12,23 @@ def fmt_time(seconds: int) -> str:
     return f"{m:02d}:{s:02d}"
 
 
+def phase_message(phase: str) -> tuple[str, str]:
+    """Return (title, message) for the given new phase."""
+    if phase == "WORK":
+        return ("Time to Focus", "New work session started. Stay on task! 💪")
+    if phase == "SHORT":
+        return ("Short Break", "Take a short break. Stretch and hydrate. ☕")
+    if phase == "LONG":
+        return ("Long Break", "Great job! Enjoy a longer break. 🌿")
+    return ("Pomodoro", f"Phase changed: {phase}")
+
+
 def main():
     root = tk.Tk()
     root.title("Pomodoro — MVP")
 
     cfg = load_config()
+    assets_dir = Path.cwd() / "src" / "assets"
 
     # --- UI ---
     lbl_mode = tk.Label(root, text="WORK", font=("Segoe UI", 14))
@@ -41,8 +55,6 @@ def main():
     btn_reset.pack(side="left", padx=8)
 
     # --- State for persistence ---
-    # We store the start timestamp of the current phase in a mutable container
-    # so inner functions (closures) can update it.
     phase_start_dt = {"value": dt.datetime.now()}
 
     # Timer callbacks
@@ -50,20 +62,24 @@ def main():
         lbl_time.config(text=fmt_time(remaining))
 
     def persist_previous_phase(prev_phase: str, duration_sec: int):
-        """Called when a phase ends: append one row to CSV."""
         start_dt = phase_start_dt["value"]
         end_dt = dt.datetime.now()
-        duration = max(0, duration_sec)  # guard in case system clock changes
+        duration = max(0, duration_sec)
         append_session(start_dt, end_dt, prev_phase, duration, tag_var.get())
 
     def on_phase_change(new_state):
-        """Update UI and reset the start timestamp for the new phase."""
+        # UI
         lbl_mode.config(text=new_state)
+        # New phase starts now
         phase_start_dt["value"] = dt.datetime.now()
+        # Sound + notification for the new phase
+        play_sound(cfg, assets_dir)
+        title, msg = phase_message(new_state)
+        show_notification(cfg, title, msg)
 
     timer = PomodoroTimer(on_tick, on_phase_change, cfg)
 
-    # Capture phase transitions to persist finished phase before advancing.
+    # Persist the previous phase right before advancing
     original_advance = timer._advance_phase
 
     def wrapped_advance():
@@ -78,7 +94,6 @@ def main():
         persist_previous_phase(prev_phase, planned)
         original_advance()
 
-    # Replace the original with our wrapper
     timer._advance_phase = wrapped_advance
 
     # Buttons
@@ -101,4 +116,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
