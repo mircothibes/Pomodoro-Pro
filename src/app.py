@@ -5,6 +5,7 @@ from pathlib import Path
 from storage import load_config, append_session
 from timer import PomodoroTimer
 from notify import play_sound, show_notification  # <-- NOVO
+from reports import open_reports_window
 
 
 def fmt_time(seconds: int) -> str:
@@ -29,6 +30,17 @@ def main():
 
     cfg = load_config()
     assets_dir = Path.cwd() / "src" / "assets"
+    data_dir = Path.cwd() / "data"
+
+    # --- Menu bar (with Reports) ---
+    menubar = tk.Menu(root)
+    root.config(menu=menubar)
+    reports_menu = tk.Menu(menubar, tearoff=0)
+    reports_menu.add_command(
+        label="Open Reports",
+        command=lambda: open_reports_window(root, data_dir)
+    )
+    menubar.add_cascade(label="Reports", menu=reports_menu)
 
     # --- UI ---
     lbl_mode = tk.Label(root, text="WORK", font=("Segoe UI", 14))
@@ -43,6 +55,9 @@ def main():
     btn_start = tk.Button(btn_frame, text="Start")
     btn_pause = tk.Button(btn_frame, text="Pause")
     btn_reset = tk.Button(btn_frame, text="Reset")
+
+    # Optional: Reports button (in addition to menu)
+    btn_reports = tk.Button(root, text="Reports", command=lambda: open_reports_window(root, data_dir))
 
     # Layout
     lbl_mode.pack(pady=6)
