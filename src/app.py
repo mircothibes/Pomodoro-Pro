@@ -54,6 +54,12 @@ def main():
     )
     menubar.add_cascade(label="Settings", menu=settings_menu)
 
+    def on_settings_saved_refresh_display():
+        # If not running and in WORK mode, refresh the label to new default
+        if not timer.running and lbl_mode.cget("text") == "WORK":
+            lbl_time.config(text=fmt_time(cfg["work_sec"]))
+
+
     # --- UI ---
     lbl_mode = tk.Label(root, text="WORK", font=("Segoe UI", 14))
     lbl_time = tk.Label(root, text=fmt_time(cfg["work_sec"]), font=("Segoe UI", 48))
