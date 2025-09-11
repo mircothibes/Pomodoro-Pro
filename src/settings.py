@@ -1,3 +1,4 @@
+
 import tkinter as tk
 from tkinter import ttk, messagebox
 
@@ -115,4 +116,4 @@ def open_settings_window(parent, cfg: dict, save_fn, apply_theme_fn):
     ttk.Button(btns, text="Cancel", command=win.destroy).pack(side="right")
 
     # Try to reflect current theme on this window as well (optional)
-    apply_theme_fn(win, cfg.get("theme", "light"))
+    apply_theme_fn(win, cfg.get("theme", "dark"))
