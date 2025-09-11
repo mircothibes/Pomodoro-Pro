@@ -2,9 +2,10 @@ import tkinter as tk
 import datetime as dt
 from pathlib import Path
 
-from storage import load_config, append_session
+from storage import load_config, append_session, save_config
+from settings import open_settings_window, apply_theme
 from timer import PomodoroTimer
-from notify import play_sound, show_notification  # <-- NOVO
+from notify import play_sound, show_notification  
 from reports import open_reports_window
 
 
@@ -32,6 +33,9 @@ def main():
     assets_dir = Path.cwd() / "src" / "assets"
     data_dir = Path.cwd() / "data"
 
+    # Apply theme at startup
+    apply_theme(root, cfg.get("theme", "light"))
+
     # --- Menu bar (with Reports) ---
     menubar = tk.Menu(root)
     root.config(menu=menubar)
@@ -41,6 +45,14 @@ def main():
         command=lambda: open_reports_window(root, data_dir)
     )
     menubar.add_cascade(label="Reports", menu=reports_menu)
+
+    # Settings menu
+    settings_menu = tk.Menu(menubar, tearoff=0)
+    settings_menu.add_command(
+        label="Open Settings",
+        command=lambda: open_settings_window(root, cfg, save_config, apply_theme)
+    )
+    menubar.add_cascade(label="Settings", menu=settings_menu)
 
     # --- UI ---
     lbl_mode = tk.Label(root, text="WORK", font=("Segoe UI", 14))
