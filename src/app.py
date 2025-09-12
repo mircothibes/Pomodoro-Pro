@@ -27,10 +27,29 @@ def phase_message(phase: str) -> tuple[str, str]:
 
 def main():
     root = tk.Tk()
-    root.title("Pomodoro — MVP")
+    root.title("Pomodoro Timer — Focus & Reports")
+    # Minimum window size + center on screen (optional)
+    root.minsize(360, 320)
+    root.update_idletasks()
+    w = root.winfo_width()
+    h = root.winfo_height()
+    x = (root.winfo_screenwidth() // 2) - (w // 2)
+    y = (root.winfo_screenheight() // 2) - (h // 2)     
+    root.geometry(f"+{x}+{y}")
 
     cfg = load_config()
+    apply_theme(root, cfg.get("theme", "light"))
     assets_dir = Path.cwd() / "src" / "assets"
+    # Set window icon (works on Windows; on Linux/macOS fallback to iconphoto)
+    try:
+        root.iconbitmap(str(assets_dir / "icon.ico"))
+    except Exception:
+        try:
+            icon_img = tk.PhotoImage(file=str(assets_dir / "icon.ico"))
+            root.iconphoto(True, icon_img)
+        except Exception:
+            pass  # no icon available, skip
+
     data_dir = Path.cwd() / "data"
 
     # Apply theme at startup
@@ -143,6 +162,12 @@ def main():
         phase_start_dt["value"] = dt.datetime.now()
 
     btn_reset.config(command=do_reset)
+
+    # Keyboard shortcuts: Ctrl+S start, Ctrl+P pause, Ctrl+R reset
+    root.bind("<Control-s>", lambda e: [phase_start_dt.update(value=dt.datetime.now()), timer.start(root)])
+    root.bind("<Control-p>", lambda e: timer.pause())
+    root.bind("<Control-r>", lambda e: do_reset())
+
 
     root.mainloop()
 
