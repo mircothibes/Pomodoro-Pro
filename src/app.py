@@ -171,12 +171,26 @@ def main():
         lbl_time.config(text=fmt_time(remaining))
 
     def persist_previous_phase(prev_phase: str, duration_sec: int):
+        """
+        Append a finished phase to sessions.csv.
+
+        Args:
+            prev_phase: The phase that just ended ("WORK", "SHORT", "LONG").
+            duration_sec: Planned duration for that phase (in seconds).
+        """
         start_dt = phase_start_dt["value"]
         end_dt = dt.datetime.now()
         duration = max(0, duration_sec)
         append_session(start_dt, end_dt, prev_phase, duration, tag_var.get())
 
     def on_phase_change(new_state):
+        """
+        React to phase changes:
+          - Update the UI label for mode
+          - Reset the start timestamp for the new phase
+          - Play a short sound (if enabled)
+          - Show a desktop notification (if enabled)
+        """
         # UI
         lbl_mode.config(text=new_state)
         # New phase starts now
@@ -192,6 +206,10 @@ def main():
     original_advance = timer._advance_phase
 
     def wrapped_advance():
+        """
+        Intercept the phase transition to persist the finished phase
+        before delegating to the original advance method.
+        """
         prev_phase = timer.state
         if prev_phase == "WORK":
             planned = cfg["work_sec"]
