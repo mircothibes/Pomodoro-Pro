@@ -231,6 +231,9 @@ def main():
     btn_pause.config(command=timer.pause)
 
     def do_reset():
+        """
+        Reset the timer to WORK phase defaults and refresh the labels.
+        """
         timer.reset()
         lbl_time.config(text=fmt_time(cfg["work_sec"]))
         lbl_mode.config(text="WORK")
