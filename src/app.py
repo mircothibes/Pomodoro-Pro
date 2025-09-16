@@ -38,7 +38,15 @@ def fmt_time(seconds: int) -> str:
 
 
 def phase_message(phase: str) -> tuple[str, str]:
-    """Return (title, message) for the given new phase."""
+    """
+    Map a Pomodoro phase to a (title, message) pair for desktop notifications.
+
+    Args:
+        phase: One of "WORK", "SHORT", "LONG" (other values fall back to generic).
+
+    Returns:
+        A (title, message) tuple appropriate for the beginning of the given phase.
+    """
     if phase == "WORK":
         return ("Time to Focus", "New work session started. Stay on task! 💪")
     if phase == "SHORT":
@@ -49,6 +57,21 @@ def phase_message(phase: str) -> tuple[str, str]:
 
 
 def main():
+    """
+    Initialize the Tkinter application and run the Pomodoro timer loop.
+
+    Responsibilities:
+        - Create the main window and basic widgets (mode label, time label, controls).
+        - Wire up the PomodoroTimer callbacks (on_tick, on_phase_change).
+        - Persist finished phases to CSV (append_session).
+        - Provide desktop notifications and optional sound per phase change.
+        - Expose menu entries for Reports and Settings.
+        - Bind keyboard shortcuts (Ctrl+S/P/R) to start/pause/reset.
+
+    Side effects:
+        - Creates/uses a ./data directory to store sessions.csv and config.json.
+        - May show system notifications and play a short sound if enabled.
+    """
     root = tk.Tk()
     root.title("Pomodoro Timer — Focus & Reports")
     # Minimum window size + center on screen (optional)
