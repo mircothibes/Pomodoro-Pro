@@ -120,6 +120,10 @@ def main():
     menubar.add_cascade(label="Settings", menu=settings_menu)
 
     def on_settings_saved_refresh_display():
+        """
+        Refresh the main time label if the timer is idle in WORK mode
+        after settings are saved (e.g., new work duration).
+        """
         # If not running and in WORK mode, refresh the label to new default
         if not timer.running and lbl_mode.cget("text") == "WORK":
             lbl_time.config(text=fmt_time(cfg["work_sec"]))
@@ -157,6 +161,13 @@ def main():
 
     # Timer callbacks
     def on_tick(remaining, state):
+        """
+         Update the main time label every second.
+
+        Args:
+            remaining: Remaining seconds in the current phase.
+            state: Current phase ("WORK", "SHORT", "LONG").
+        """
         lbl_time.config(text=fmt_time(remaining))
 
     def persist_previous_phase(prev_phase: str, duration_sec: int):
