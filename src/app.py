@@ -24,6 +24,15 @@ from reports import open_reports_window
 
 
 def fmt_time(seconds: int) -> str:
+    """
+    Format a number of seconds as MM:SS.
+
+    Args:
+        seconds: Remaining time in seconds (can be >= 0; negatives are clamped to 0).
+
+    Returns:
+        A string in the "MM:SS" format (zero-padded).
+    """
     m, s = divmod(max(0, int(seconds)), 60)
     return f"{m:02d}:{s:02d}"
 
