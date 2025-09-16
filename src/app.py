@@ -1,3 +1,17 @@
+"""
+Pomodoro Timer — Focus & Reports
+--------------------------------
+Tkinter-based Pomodoro timer with:
+- Automatic phase switching (WORK / SHORT / LONG)
+- Session logging to CSV (start, end, duration, tag)
+- System notifications and optional sound
+- Settings window (durations, sessions per long break, theme, sound/notify)
+- Reports window (daily/weekly minutes, top tags) with embedded matplotlib charts
+
+Entry point: main()
+Run with: python src/main.py
+"""
+
 import tkinter as tk
 import datetime as dt
 from pathlib import Path
