@@ -21,7 +21,10 @@ from settings import open_settings_window, apply_theme
 from timer import PomodoroTimer
 from notify import play_sound, show_notification  
 from reports import open_reports_window
+from paths import get_assets_dir, get_data_dir
 
+assets_dir = get_assets_dir()
+data_dir = get_data_dir()
 
 def fmt_time(seconds: int) -> str:
     """
