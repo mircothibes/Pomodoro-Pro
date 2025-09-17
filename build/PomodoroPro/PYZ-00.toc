@@ -3470,6 +3470,10 @@
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2032.0_x64__qbz5n2kfra8p0\\Lib\\pathlib\\_local.py',
    'PYMODULE'),
+  ('paths',
+   'C:\\Users\\mirco\\Desktop\\TI\\New Projects '
+   '2025\\Pomodoro-Pro\\src\\paths.py',
+   'PYMODULE'),
   ('pdb',
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2032.0_x64__qbz5n2kfra8p0\\Lib\\pdb.py',
