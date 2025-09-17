@@ -1,3 +1,18 @@
+"""
+Notification & Sound Utilities
+------------------------------
+Lightweight helpers for playing a short sound and showing desktop notifications.
+
+Design notes
+- `play_sound`: Uses `winsound` on Windows. If `ding.wav` is missing, falls back to a
+  system beep. On non-Windows platforms (or any failure), it silently does nothing.
+- `show_notification`: Uses `plyer.notification` if available; otherwise fails silently.
+
+Both functions first check feature flags in the config dict:
+  cfg["sound"]  -> enable/disable sound feedback  (default: True)
+  cfg["notify"] -> enable/disable notifications    (default: True)
+"""
+
 from pathlib import Path
 
 def play_sound(cfg: dict, assets_dir: Path):
