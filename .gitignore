@@ -1,0 +1,19 @@
+# venv / caches
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# build artifacts
+build/
+dist/
+*.spec
+
+# OS
+.DS_Store
+Thumbs.db
+
+# app data (gerado em runtime)
+data/sessions.csv
+data/config.json
