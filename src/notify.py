@@ -16,7 +16,27 @@ Both functions first check feature flags in the config dict:
 from pathlib import Path
 
 def play_sound(cfg: dict, assets_dir: Path):
-    """Play a 'ding' sound if enabled."""
+    """
+    Play a short 'ding' sound if enabled in the configuration.
+
+    Behavior:
+        - If cfg["sound"] is falsy, return immediately.
+        - On Windows:
+            * Tries to play 'ding.wav' located in `assets_dir`.
+            * If not found, falls back to a system MessageBeep.
+        - On other platforms or on any exception, does nothing.
+
+    Args:
+        cfg: Configuration dictionary. If `cfg.get("sound", True)` is False, no sound is played.
+        assets_dir: Directory where assets (e.g., 'ding.wav') are stored.
+
+    Returns:
+        None. (Side effect: attempts to play a short sound.)
+
+    Notes:
+        - `winsound` is only available on Windows. Import is done lazily inside the function.
+        - This helper is intentionally fail-safe: any error is swallowed to avoid breaking the UI loop.
+    """
     if not cfg.get("sound", True):
         return
     try:
