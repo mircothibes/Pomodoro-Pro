@@ -36,3 +36,12 @@ exe = EXE(
     codesign_identity=None,
     entitlements_file=None,
 )
+
+datas = [
+    ('src/assets/*', 'assets'),
+]
+hiddenimports = [
+    'matplotlib.backends.backend_tkagg',
+    'matplotlib.backends.backend_agg',
+    'plyer.platforms.win.notification',
+]
