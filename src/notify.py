@@ -52,7 +52,27 @@ def play_sound(cfg: dict, assets_dir: Path):
         pass
 
 def show_notification(cfg: dict, title: str, message: str):
-    """Show a desktop notification if enabled."""
+    """
+     Show a desktop notification if enabled in the configuration.
+
+    Behavior:
+        - If cfg["notify"] is falsy, return immediately.
+        - Uses `plyer.notification.notify`. If `plyer` is unavailable or the platform
+          does not support notifications, fails silently.
+
+    Args:
+        cfg: Configuration dictionary. If `cfg.get("notify", True)` is False, no notification is shown.
+        title: Notification title text.
+        message: Notification body text.
+
+    Returns:
+        None. (Side effect: attempts to display a system notification.)
+
+    Notes:
+        - Some environments (e.g., locked-down Windows, certain Linux distros without a notifier service)
+          may ignore notifications even if no exception is raised.
+        - `plyer` is imported lazily to keep import-time light and avoid hard dependency at runtime.
+    """
     if not cfg.get("notify", True):
         return
     try:
