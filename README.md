@@ -73,7 +73,8 @@ Run the app:
 - Click Start to begin a cycle.
 - The timer automatically moves to the next phase.
 - Each completed session is saved to the log.
-- Access Reports in the menu to view your performance.
+- Access Reports in the menu to view daily/weekly productivity.
+- Use Settings to customize durations, sounds, and theme.
 
 ---
 
