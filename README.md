@@ -27,6 +27,7 @@ This routine helps improve concentration, reduces mental fatigue, and boosts con
 - Saved settings (cycle durations, theme, sound, notifications)  
 - Sounds and notifications when switching phases  
 - Export session data + open data folder  
+- Keyboard shortcuts (**Ctrl+S** start, **Ctrl+P** pause, **Ctrl+R** reset)
 
 ---
 
