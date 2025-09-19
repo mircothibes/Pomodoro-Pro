@@ -66,6 +66,15 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 ---
+
+💻 Windows Executable
+
+You can also download the latest ready-to-use .exe from the Releases page.
+Just extract and double-click PomodoroPro.exe.
+All session data will be saved in the data/ folder next to the executable.
+
+---
+
 ## ▶️ Usage
 
 Run the app:
