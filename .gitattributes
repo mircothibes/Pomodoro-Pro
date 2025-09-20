@@ -1,2 +1,9 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+docs/** linguist-documentation
+**/*.html linguist-documentation
+**/*.tex  linguist-documentation
+
+src/assets/**   linguist-vendored
+third_party/**  linguist-vendored
+
+src/**/*.py linguist-detectable=true
+
