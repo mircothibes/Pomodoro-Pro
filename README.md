@@ -20,7 +20,7 @@ This routine helps improve concentration, reduces mental fatigue, and boosts con
 
 ## 🖼️ Screenshots
 
-- ** Main Window ** 
+- **Main Window** 
 
 <p align="center">
   <img src="docs/main-window-light.png" alt="Main Window (Light)" width="300">
