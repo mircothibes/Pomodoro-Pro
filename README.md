@@ -18,6 +18,16 @@ This routine helps improve concentration, reduces mental fatigue, and boosts con
 
 ---
 
+## 🖼️ Screenshots
+
+## Main Window
+
+<p align="center">
+  <img src="docs/main-window-light.png" alt="Main Window (Light)">
+</p>
+
+---
+
 ## 🚀 Features
 - Graphical interface with **Tkinter**  
 - Automatic cycles: **Work / Short break / Long break**  
