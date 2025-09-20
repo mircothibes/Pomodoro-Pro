@@ -1,11 +1,9 @@
-docs/**                 linguist-documentation
-src/assets/**           linguist-vendored
+* linguist-detectable=false
 
-*.tex                   linguist-detectable=false
+*.py    linguist-detectable=true
+*.ipynb linguist-detectable=true
 
-*.html                  linguist-documentation
-
-*.py                    linguist-detectable=true
-src/**/*.py             linguist-detectable=true
+docs/**        linguist-documentation
+src/assets/**  linguist-vendored
 
 
