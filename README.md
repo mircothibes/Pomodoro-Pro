@@ -23,13 +23,13 @@ This routine helps improve concentration, reduces mental fatigue, and boosts con
 - **Main Window** 
 
 <p align="center">
-  <img src="docs/main-window-light.png" alt="Main Window (Light)" width="300">
+  <img src="docs/main-window-light.png" alt="Main Window (Light)" width="200">
 </p>
 
 - **Settings Window**
 
 <p align="center">
-  <img src="docs/settings.png" alt="Settings Window" width="350">
+  <img src="docs/settings.png" alt="Settings Window" width="200">
 </p>
 
 ---
